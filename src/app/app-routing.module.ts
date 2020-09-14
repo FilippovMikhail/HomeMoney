@@ -1,10 +1,20 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+/*Класс Routes предоставляет коллекцию маршрутов*/
+import {Routes, RouterModule} from '@angular/router';
 
-const routes: Routes = [];
+/*Определяем маршруты*/
+const routes: Routes = [
+  {path: '', redirectTo: 'login', pathMatch: 'full'} /*pathMatch: 'full' - обозначает полное соответствие маршруту*/
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
-export class AppRoutingModule { }
+
+export class AppRoutingModule {
+}
