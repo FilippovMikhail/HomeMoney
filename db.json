@@ -1,19 +1,44 @@
 {
-  "posts": [
+  "users": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "email": "filippov.mikhail1996@yandex.ru",
+      "password": "12345678",
+      "name": "Администратор"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "email": "email@mail.ru",
+      "password": "159753",
+      "name": "Иван",
+      "id": 2
+    },
+    {
+      "email": "email@mail.ru2",
+      "password": "456456",
+      "name": "Иван2",
+      "id": 3
+    },
+    {
+      "email": "email2@mail.ru",
+      "password": "123456789",
+      "name": "Степан",
+      "id": 4
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "bill": {
+    "value": 100000,
+    "currency": "RUB"
+  },
+  "categories": [
+    {
+      "name": "Дом",
+      "capacity": 15000,
+      "id": 1
+    },
+    {
+      "name": "Еда",
+      "capacity": 10000,
+      "id": 1
+    }
+  ]
 }
