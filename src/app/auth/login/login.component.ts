@@ -6,6 +6,7 @@ import {UsersService} from '../../shared/services/users.service';
 import {UserModel} from '../../shared/models/user.model';
 import {MessageModel} from '../../shared/models/message.model';
 import {AuthService} from '../../shared/services/auth.service';
+import {Utilities} from '../../shared/services/helper/utilities';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(private usersService: UsersService,
               private authService: AuthService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private utilities: Utilities) {
   }
 
   ngOnInit(): void {
@@ -64,7 +66,7 @@ export class LoginComponent implements OnInit {
             /*Успешный вход*/
             this.authService.login();
             /*Редиректим на страницу*/
-            // this.router.navigate(['']);
+            this.router.navigate(['/system', 'bill']);
           } else {
             this.showMessage({
               text: 'Пароль не верный',
@@ -81,9 +83,8 @@ export class LoginComponent implements OnInit {
     console.log(this.form);
   }
 
-  /*Проверка валидности поля*/
-  isValidInput(fieldName: string): boolean {
-    const control = this.form.controls[fieldName];
-    return control.invalid && control.touched;
+  /*Проверка невалидности поля*/
+  isInvalidField(fieldName: string): boolean {
+    return this.utilities.isInvalidField(fieldName, this.form);
   }
 }

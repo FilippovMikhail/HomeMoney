@@ -7,6 +7,7 @@ import {MessageModel} from '../../shared/models/message.model';
 import {UsersService} from '../../shared/services/users.service';
 import {UserModel} from '../../shared/models/user.model';
 import {map, tap} from 'rxjs/operators';
+import {Utilities} from '../../shared/services/helper/utilities';
 
 @Component({
   selector: 'app-registration',
@@ -21,7 +22,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private usersService: UsersService,
-              private router: Router) {
+              private router: Router,
+              private utilities: Utilities) {
 
   }
 
@@ -55,10 +57,9 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  /*Проверка валидности поля*/
-  isValidInput(fieldName: string): boolean {
-    const control = this.form.controls[fieldName];
-    return control.invalid && control.touched;
+  /*Проверка невалидности поля*/
+  isInvalidField(fieldName: string): boolean {
+    return this.utilities.isInvalidField(fieldName, this.form);
   }
 
   /*Асинхронный валидатор, проверяющий email на уникальность*/

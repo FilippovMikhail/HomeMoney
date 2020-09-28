@@ -8,7 +8,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div
     class="form-group"
-    [ngClass]="{'has-error':isValidInput('email')}"
+    [ngClass]="{'has-error':isInvalidField('email')}"
   >
     <label for="email">Email</label>
     <input
@@ -18,7 +18,7 @@
       placeholder="Введите email"
       formControlName="email"
     >
-    <span *ngIf="isValidInput('email')">
+    <span *ngIf="isInvalidField('email')">
       <span class="form-help-text"
             *ngIf="form.get('email')['errors']['required']">
         Email обязателен для заполнения
@@ -31,7 +31,7 @@
   </div>
   <div
     class="form-group"
-    [ngClass]="{'has-error':isValidInput('password')}">
+    [ngClass]="{'has-error':isInvalidField('password')}">
     <label for="password">Пароль</label>
     <input
       type="text"
@@ -40,7 +40,7 @@
       placeholder="Введите пароль"
       formControlName="password"
     >
-    <span *ngIf="isValidInput('password')">
+    <span *ngIf="isInvalidField('password')">
       <span class="form-help-text"
             *ngIf="form.get('password').errors['required']">
         Пароль обязателен для заполнения

@@ -1,0 +1,73 @@
+<div class="card">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Редактировать категорию</h3>
+    </div>
+  </div>
+  <div class="card-block">
+
+    <div class="alert alert-{{message.type}}"
+         *ngIf="message.text"
+    >
+      {{message.text}}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="control-label" for="e-selectCategory">Выберите категорию</label>
+        <select
+          class="form-control"
+          id="e-selectCategory"
+          formControlName="selectCategory"
+        >
+          <option
+            *ngFor="let category of categories"
+            [ngValue]="category.id">
+            {{category.name}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error':isInvalidField('name')}">
+        <label class="control-label" for="e-name">Введите название</label>
+        <input
+          class="form-control"
+          type="text"
+          id="e-name"
+          formControlName="name">
+        <span *ngIf="isInvalidField('name')">
+          <span class="form-help-text"
+                *ngIf="form.get('name')['errors']['required']">
+            Название обязательно для заполнения
+          </span>
+        </span>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error':isInvalidField('value')}">
+        <label class="control-label" for="e-value">Введите лимит</label>
+        <input
+          class="form-control"
+          type="number"
+          id="e-value"
+          formControlName="value">
+        <span *ngIf="isInvalidField('value')">
+          <span class="form-help-text"
+                *ngIf="form.get('value')['errors']['required']">
+            Лимит обязателен для заполнения
+          </span>
+          <span class="form-help-text"
+                *ngIf="form.get('value')['errors']['min']">
+            Лимит не может быть отрицательным и равным 0
+          </span>
+        </span>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="form.invalid"
+      >
+        Редактировать
+      </button>
+    </form>
+  </div>
+</div>
