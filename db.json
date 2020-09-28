@@ -8,13 +8,13 @@
     }
   ],
   "bill": {
-    "value": 100000,
+    "value": 85100,
     "currency": "EUR"
   },
   "categories": [
     {
       "name": "Дом",
-      "capacity": 15,
+      "capacity": 15000,
       "id": 1
     },
     {
@@ -76,6 +76,30 @@
       "date": "19.01.2018 19:18:03",
       "description": "Купил бензин",
       "id": 6
+    },
+    {
+      "type": "outcome",
+      "amount": 8700,
+      "category": 1,
+      "date": "28.09.2020 13:56:46",
+      "description": "Так получилось :)",
+      "id": 7
+    },
+    {
+      "type": "outcome",
+      "amount": 5000,
+      "category": 1,
+      "date": "28.09.2020 13:57:22",
+      "description": "Так получилось :)",
+      "id": 8
+    },
+    {
+      "type": "outcome",
+      "amount": 1200,
+      "category": 1,
+      "date": "28.09.2020 13:57:37",
+      "description": "Так получилось :)",
+      "id": 9
     }
   ]
 }
