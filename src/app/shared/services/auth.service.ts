@@ -10,12 +10,12 @@ export class AuthService {
   private isAuthenicated = false;
 
   /*Вход*/
-  login() {
+  login(): void {
     this.isAuthenicated = true;
   }
 
   /*Выход*/
-  logout() {
+  logout(): void {
     this.isAuthenicated = false;
     window.localStorage.clear();
   }
