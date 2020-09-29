@@ -9,7 +9,7 @@ export class HistoryChartComponent implements OnInit {
 
   @Input() data;
 
-  view: any[] = [545, 355];
+  view: any[] = [900, 700];
 
   constructor() {
   }

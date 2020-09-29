@@ -8,7 +8,7 @@
     }
   ],
   "bill": {
-    "value": 84950,
+    "value": 83450,
     "currency": "EUR"
   },
   "categories": [
@@ -34,7 +34,7 @@
       "type": "income",
       "amount": 1250,
       "categoryId": 2,
-      "date": "12.06.2017 19:49:02",
+      "date": "12.09.2020 19:49:02",
       "description": "Подарили еду в гостях"
     },
     {
@@ -42,14 +42,14 @@
       "type": "outcome",
       "amount": 1300,
       "categoryId": 1,
-      "date": "13.06.2017 19:49:02",
+      "date": "13.09.2020 19:49:02",
       "description": "Купил посудомоечную машину"
     },
     {
       "type": "income",
       "amount": 1480,
       "categoryId": 2,
-      "date": "17.06.2017 14:00:48",
+      "date": "17.09.2020 14:00:48",
       "id": 3,
       "description": "Поход в окей с баллами. Бесплатная еда"
     },
@@ -57,7 +57,7 @@
       "type": "outcome",
       "amount": 2470,
       "categoryId": 2,
-      "date": "17.06.2017 14:00:58",
+      "date": "17.09.2020 14:00:58",
       "id": 4,
       "description": "Закупка на неделю"
     },
@@ -65,7 +65,7 @@
       "type": "outcome",
       "amount": 4000,
       "categoryId": 3,
-      "date": "10.06.2017 14:01:58",
+      "date": "10.09.2020 14:01:58",
       "id": 5,
       "description": "Заправка + проход ТО"
     },
@@ -73,7 +73,7 @@
       "type": "outcome",
       "amount": 200,
       "categoryId": 3,
-      "date": "19.01.2018 19:18:03",
+      "date": "30.08.2020 19:18:03",
       "description": "Купил бензин",
       "id": 6
     },
@@ -108,6 +108,14 @@
       "date": "28.09.2020 16:35:14",
       "description": "Так получилось :)",
       "id": 10
+    },
+    {
+      "type": "outcome",
+      "amount": 1500,
+      "categoryId": 2,
+      "date": "29.09.2020 12:57:47",
+      "description": "Много поел)",
+      "id": 11
     }
   ]
 }

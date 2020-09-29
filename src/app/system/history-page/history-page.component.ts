@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {combineLatest, Subscription} from 'rxjs';
+import * as moment from 'moment';
 
 import {CategoriesService} from '../shared/services/categories.service';
 import {EventsService} from '../shared/services/events.service';
@@ -17,8 +18,10 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
   isLoaded = false;
   categories: CategoryModel[] = [];
   events: EventModel[] = [];
+  filteredEvents: EventModel[] = [];
   subscriptions: Subscription = new Subscription();
   chartData = [];
+  isFilterVisible = false;
 
   constructor(private categoriesService: CategoriesService,
               private eventsService: EventsService) {
@@ -34,6 +37,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
           this.categories = data[0];
           this.events = data[1];
 
+          this.setOriginalEvents();
           this.calculateChartData();
 
           this.isLoaded = true;
@@ -44,7 +48,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
   calculateChartData(): void {
     this.chartData = [];
     this.categories.forEach(cat => {
-      const categoryEvent = this.events.filter(e => e.categoryId === cat.id && e.type === 'outcome');
+      const categoryEvent = this.filteredEvents.filter(e => e.categoryId === cat.id && e.type === 'outcome');
       this.chartData.push({
         /*Название категории*/
         name: cat.name,
@@ -52,6 +56,56 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
         value: categoryEvent.reduce((sum, e) => sum + e.amount, 0)
       });
     });
+  }
+
+  /*Открытие/Закрытие модального окна с фильтрацией*/
+  private toggleFilterVisibility(dir: boolean): void {
+    this.isFilterVisible = dir;
+  }
+
+  openFilter(): void {
+    this.toggleFilterVisibility(true);
+  }
+
+  onFilterApply({types, categories, period}): void {
+    this.toggleFilterVisibility(false);
+    this.setOriginalEvents();
+
+    /*Определим границы периода*/
+    const startPeriod = moment().startOf(period).startOf('d');
+    const endPeriod = moment().endOf(period).endOf('d');
+
+    this.filteredEvents = this.filteredEvents
+    /*Фильтруем по типу*/
+      .filter(x => {
+        return types.indexOf(x.type) !== -1;
+      })
+      /*Фильтруем по категории*/
+      .filter(x => {
+        return categories.indexOf(x.categoryId.toString()) !== -1;
+      })
+      /*Фильрация по периоду*/
+      .filter(x => {
+        /*Определим, входит ли дата в границы периода*/
+        const momentDate = moment(x.date, 'DD.MM.YYYY HH:mm:ss');
+        return momentDate.isBetween(startPeriod, endPeriod);
+      });
+
+    /*Перерисовываем график с новыми данными*/
+    this.calculateChartData();
+  }
+
+  /*Закрытие фильтра*/
+  onFilterCancel(): void {
+    this.toggleFilterVisibility(false);
+    /*Возвращаем исходный массив с данными*/
+    this.setOriginalEvents();
+    /*Перерисовываем график*/
+    this.calculateChartData();
+  }
+
+  private setOriginalEvents(): void {
+    this.filteredEvents = this.events.slice();
   }
 
   ngOnDestroy(): void {
