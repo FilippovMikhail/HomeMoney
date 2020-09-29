@@ -47,8 +47,8 @@ export class PlanningPageComponent implements OnInit, OnDestroy {
   /*Подсчет общих трат для категории*/
   getCategoryCost(category: CategoryModel): number {
     /*Получаем все события по данной категории*/
-    const catEvents = this.events.filter(e => e.category === category.id && e.type === 'outcome');
-    /*Общая сумма*/
+    const catEvents = this.events.filter(e => e.categoryId === category.id && e.type === 'outcome');
+    /*Общая сумма трат для категории*/
     return catEvents.reduce((total, e) => {
       total += e.amount;
       return total;

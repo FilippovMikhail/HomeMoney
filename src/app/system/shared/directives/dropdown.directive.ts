@@ -18,7 +18,7 @@ export class DropdownDirective {
     this.isOpen = !this.isOpen;
   }*/
 
-  @HostListener('click') onClick(){
+  @HostListener('click') onClick(): void{
     this.isOpen = !this.isOpen;
   }
 }

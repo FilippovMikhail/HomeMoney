@@ -24,4 +24,9 @@ export class EventsService extends BaseApi {
   getEvents(): Observable<EventModel[]> {
     return this.get('events');
   }
+
+  /*Получение события по идентификатору*/
+  getEventById(id: string): Observable<EventModel>{
+    return this.get(`events/${id}`);
+  }
 }

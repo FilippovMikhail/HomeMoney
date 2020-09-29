@@ -5,16 +5,19 @@ import {HttpClientModule} from '@angular/common/http';
 import {UsersService} from './services/users.service';
 import {AuthService} from './services/auth.service';
 import {Utilities} from './services/helper/utilities';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxChartsModule
   ],
   exports: [
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxChartsModule
   ],
   providers: [
     UsersService,
