@@ -6,7 +6,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {UsersService} from './services/users.service';
 import {AuthService} from './services/auth.service';
 import {Utilities} from './services/helper/utilities';
-import {AuthGuard} from './services/auth.guard';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   imports: [
@@ -18,14 +18,15 @@ import {AuthGuard} from './services/auth.guard';
   exports: [
     ReactiveFormsModule,
     FormsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    LoaderComponent
   ],
   providers: [
     UsersService,
     AuthService,
-    Utilities,
-    AuthGuard
-  ]
+    Utilities
+  ],
+  declarations: [LoaderComponent]
 })
 
 export class SharedModule {

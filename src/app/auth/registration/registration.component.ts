@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import {Title} from '@angular/platform-browser';
+import {map, tap} from 'rxjs/operators';
 
 import {MessageModel} from '../../shared/models/message.model';
 import {UsersService} from '../../shared/services/users.service';
 import {UserModel} from '../../shared/models/user.model';
-import {map, tap} from 'rxjs/operators';
 import {Utilities} from '../../shared/services/helper/utilities';
 
 @Component({
@@ -23,8 +24,9 @@ export class RegistrationComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private usersService: UsersService,
               private router: Router,
-              private utilities: Utilities) {
-
+              private utilities: Utilities,
+              private title: Title) {
+    title.setTitle('Регистрация');
   }
 
   ngOnInit() {

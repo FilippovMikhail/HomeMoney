@@ -1,17 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Meta, Title} from '@angular/platform-browser';
 
 import {UsersService} from '../../shared/services/users.service';
 import {UserModel} from '../../shared/models/user.model';
 import {MessageModel} from '../../shared/models/message.model';
 import {AuthService} from '../../shared/services/auth.service';
 import {Utilities} from '../../shared/services/helper/utilities';
+import {fadeStateTrigger} from '../../shared/animations/fade.animation';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [fadeStateTrigger]
 })
 export class LoginComponent implements OnInit {
 
@@ -22,7 +25,14 @@ export class LoginComponent implements OnInit {
               private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute,
-              private utilities: Utilities) {
+              private utilities: Utilities,
+              private title: Title,
+              private meta: Meta) {
+    title.setTitle('Вход в систему');
+    meta.addTags([
+      {name: 'keywords', content: 'логин,вход,система'},
+      {name: 'description', content: 'Страница для входа в систему'},
+    ]);
   }
 
   ngOnInit(): void {
